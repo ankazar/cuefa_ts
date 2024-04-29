@@ -11,6 +11,7 @@ import abs = EmotionCommon.abs
 import rays from '@img/rays.png'
 import leftChar from '@img/char-left.png'
 import rightChar from '@img/char-right.png'
+import bridge from '@vkontakte/vk-bridge';
 
 
 
@@ -18,6 +19,7 @@ import rightChar from '@img/char-right.png'
 const MainMenu =
 React.memo(
 ()=>{
+  bridge.send("VKWebAppInit", {})
   return <Pages.Page>
     <Pages.ContentClampAspectRatio>
       <BgcColor/>
