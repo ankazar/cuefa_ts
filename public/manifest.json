@@ -1,0 +1,24 @@
+{
+  "lang": "ru-RU",
+  "name": "Камень ножницы бумага",
+  "short_name": "Камень ножницы бумага",
+  "description": "Игра камень ножницы бумага",
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "landscape",
+  "theme_color": "#282c34",
+  "background_color": "#282c34",
+  "icons": [
+    {
+      "src": "pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
