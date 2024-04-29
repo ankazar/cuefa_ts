@@ -32,6 +32,7 @@ export default defineConfig({
     host: true, // expose app via IP access from local network
     //port: 40030,
   },
+  base: "/cuefa_ts",
   plugins: [
     react({
       jsxImportSource: '@emotion/react',
