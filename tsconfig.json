@@ -1,0 +1,58 @@
+{
+  "compilerOptions": {
+    "target": "ESNext", // simply means which version of ECMAScript you're using to code
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable",
+    ],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    
+    
+    
+    
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true, // allow only modules (files with import/export). At least you need 'export {}'.
+    "noEmit": true,
+    "jsx": "react-jsx",
+    
+    // path aliases
+    "baseUrl": ".",
+    "paths": {
+      "src/*": ["src/*"],
+      
+      "@res/*": ["src/res/*"],
+      "@img/*": ["src/res/img/*"],
+      "@audio/*": ["src/res/audio/*"],
+      
+      "@util/*": ["src/util/*"]
+    },
+    
+    
+    
+    /* Linting */
+    "strict": true,
+    //"noUnusedLocals": true,
+    //"noUnusedParameters": true,
+    "noPropertyAccessFromIndexSignature": false, // allow access obj.prop from indexed type
+    "noUncheckedIndexedAccess": false, // add undefined when get props from indexed type
+    "exactOptionalPropertyTypes": true, // '?' means absence of property but not undefined
+    "downlevelIteration": true, // use [...anyIterator]
+    "noImplicitAny": false, // нет неявных any
+    "noImplicitOverride": true, // при переопределении всегда надо указывать override
+    "allowUnreachableCode": true, // разрешить код после return, который никогда не выполнится
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "useDefineForClassFields": true,
+    
+    "plugins": [
+      { "name": "typescript-plugin-css-modules" }
+    ]
+    
+  },
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
