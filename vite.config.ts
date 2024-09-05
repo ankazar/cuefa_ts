@@ -28,6 +28,7 @@ const pwaOptions: Partial<VitePWAOptions> = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/cuefa_ts", //домен проекта
   server: {
     host: true, // expose app via IP access from local network
     //port: 40030,
