@@ -8,7 +8,7 @@ const App =
 React.memo(
 ()=>{
   
-  useAutoFullscreen()
+  //useAutoFullscreen() полноэкранный режим при любом нажатии
   
   return <>
     <AppFrame/>
