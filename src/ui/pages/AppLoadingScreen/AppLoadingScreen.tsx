@@ -9,7 +9,7 @@ import abs = EmotionCommon.abs
 //import appLoadingScreen from '@img/app-loading-screen.png'
 import fetchToBlob = FileUtils.fetchToBlob
 import blobToDataUrl = FileUtils.blobToDataUrl
-import bridge from '@vkontakte/vk-bridge';
+//import bridge from '@vkontakte/vk-bridge';
 
 
 
@@ -17,7 +17,6 @@ import bridge from '@vkontakte/vk-bridge';
 const AppLoadingScreen =
 React.memo(
 ()=>{
-  bridge.send("VKWebAppInit", {})
   
   const [{ resources }, setAppState] = useRecoilState(AppRecoil)
   

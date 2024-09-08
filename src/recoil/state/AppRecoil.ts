@@ -21,8 +21,8 @@ import swing from '@audio/swing.mp3'
 
 const trophy = 'https://img.freepik.com/free-vector/trophy-award-laurel-wreath-composition-with-realistic-image-of-golden-cup-decorated-with-garland-with-reflection_1284-32301.jpg?w=740&t=st=1713073149~exp=1713073749~hmac=2ee2e4d49d713eaf20ce5f86d1810c7835851c839b2f169b55bc62aab5d7c12c'
 const enemyAva = 'https://sun3-9.userapi.com/s/v1/if2/R2uC-AgaqmhAAQg2GVu98lC-hjNXFJX8YIWsx5wWr41fat8zv7Rv6Ir57T7NA77kQHj_mRGd5LFmZ8DPf-pBhNUZ.jpg?quality=95&crop=960,1193,319,319&as=50x50,100x100,200x200&ava=1&u=0QT7OygNsVaalrxEYgoHT0KcIz_tCOEAp32nf3FHWBI&cs=100x100'
-const playerAva = 'https://sun3-9.userapi.com/s/v1/if2/R2uC-AgaqmhAAQg2GVu98lC-hjNXFJX8YIWsx5wWr41fat8zv7Rv6Ir57T7NA77kQHj_mRGd5LFmZ8DPf-pBhNUZ.jpg?quality=95&crop=960,1193,319,319&as=50x50,100x100,200x200&ava=1&u=0QT7OygNsVaalrxEYgoHT0KcIz_tCOEAp32nf3FHWBI&cs=100x100'
-
+//const playerAva = 'https://sun3-9.userapi.com/s/v1/if2/R2uC-AgaqmhAAQg2GVu98lC-hjNXFJX8YIWsx5wWr41fat8zv7Rv6Ir57T7NA77kQHj_mRGd5LFmZ8DPf-pBhNUZ.jpg?quality=95&crop=960,1193,319,319&as=50x50,100x100,200x200&ava=1&u=0QT7OygNsVaalrxEYgoHT0KcIz_tCOEAp32nf3FHWBI&cs=100x100'
+const playerAva = window.localStorage['playerAva'];
 
 
 type ResourceDataUrl = {

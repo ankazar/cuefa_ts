@@ -116,7 +116,7 @@ React.memo(
   const tourData = {
     tourLevel: 3,
     playerAva: resources.playerAva.image,
-    playerName: 'Имя игрока',
+    playerName: window.localStorage['playerName'],
   }
   
   const [play] = useSound(resources.swing.dataUrl,{

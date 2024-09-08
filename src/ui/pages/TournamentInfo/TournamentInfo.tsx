@@ -12,6 +12,8 @@ import { ButtonStyle } from 'src/ui/elements/Button/ButtonStyle.ts'
 import { EmotionCommon } from 'src/ui/style/EmotionCommon.ts'
 import Txt = EmotionCommon.Txt
 import abs = EmotionCommon.abs
+import bridge from '@vkontakte/vk-bridge';
+import { EAdsFormats } from '@vkontakte/vk-bridge'
 
 //const trophy = 'https://img.freepik.com/free-vector/trophy-award-laurel-wreath-composition-with-realistic-image-of-golden-cup-decorated-with-garland-with-reflection_1284-32301.jpg?w=740&t=st=1713073149~exp=1713073749~hmac=2ee2e4d49d713eaf20ce5f86d1810c7835851c839b2f169b55bc62aab5d7c12c'
 
@@ -45,6 +47,21 @@ React.memo(
     tFrame.append(img)
     return ()=>void tFrame.removeChild(img)
   },[])
+
+  const helloConsole = () =>{
+    // Показать рекламу
+
+  bridge.send('VKWebAppShowNativeAds', { ad_format: EAdsFormats.INTERSTITIAL} )
+  .then((data) => {
+    if (data.result) // Успех
+      console.log('Реклама показана');
+    else // Ошибка 
+      console.log('Ошибка при показе');
+  })
+  .catch((error) => { console.log(error); /* Ошибка */ });
+    console.log('Btn click')
+  };
+
   
   
   return <Pages.Page>
@@ -74,6 +91,7 @@ React.memo(
         <Link to={'/game-screen'}>
           <Btn
             style={{ backgroundImage: `url(${resources.buttonBgc.dataUrl})` }}
+            onClick={helloConsole}
           >
             Участвовать
           </Btn>
