@@ -33,36 +33,37 @@ import rotateAnim = EmotionCommon.rotateAnim
 import awaitValue = AsyncUtils.awaitValue
 import awaitCallback = AsyncUtils.awaitCallback
 
-
-
-//const enemyAva = 'https://sun3-9.userapi.com/s/v1/if2/R2uC-AgaqmhAAQg2GVu98lC-hjNXFJX8YIWsx5wWr41fat8zv7Rv6Ir57T7NA77kQHj_mRGd5LFmZ8DPf-pBhNUZ.jpg?quality=95&crop=960,1193,319,319&as=50x50,100x100,200x200&ava=1&u=0QT7OygNsVaalrxEYgoHT0KcIz_tCOEAp32nf3FHWBI&cs=100x100'
-//const playerAva = 'https://sun3-9.userapi.com/s/v1/if2/R2uC-AgaqmhAAQg2GVu98lC-hjNXFJX8YIWsx5wWr41fat8zv7Rv6Ir57T7NA77kQHj_mRGd5LFmZ8DPf-pBhNUZ.jpg?quality=95&crop=960,1193,319,319&as=50x50,100x100,200x200&ava=1&u=0QT7OygNsVaalrxEYgoHT0KcIz_tCOEAp32nf3FHWBI&cs=100x100'
-
-
 type Player = {
   ava: HTMLImageElement
   name: string
 }
-async function findEnemy(enemyAva: HTMLImageElement): Promise<Player> {
-  const enemies: Player[] = [
-    {
-      ava: enemyAva,
-      name: 'Соперник 1',
-    },
-    {
-      ava: enemyAva,
-      name: 'Соперник 2',
-    },
-    {
-      ava: enemyAva,
-      name: 'Джэйсон Стетхэм',
-    },
-  ]
-  return awaitValue(1500, enemies[randomInt(2)])
+
+let enemyPlayer : Player;
+let enemies = [
+  ['Чак Норрис', 'https://sun3-9.userapi.com/s/v1/if2/R2uC-AgaqmhAAQg2GVu98lC-hjNXFJX8YIWsx5wWr41fat8zv7Rv6Ir57T7NA77kQHj_mRGd5LFmZ8DPf-pBhNUZ.jpg?quality=95&crop=960,1193,319,319&as=50x50,100x100,200x200&ava=1&u=0QT7OygNsVaalrxEYgoHT0KcIz_tCOEAp32nf3FHWBI&cs=100x100'],
+  ['Брэд Пит', 'https://sun3-23.userapi.com/s/v1/ig2/jYmX8QJjUpjj6E_w8exXHgqDhSo8AlBKCe-k1u96haWzQsHwiVHO9wCAzz1OuiEkQj5urQ-FqHb1bKFKc6ttRr8m.jpg?quality=95&crop=0,48,1920,1920&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440&ava=1&u=9aR-nE1N3dcDQCR31z1Gm1hviiddvD8OcYfLiQey0FQ&cs=100x100'],
+  ['Джэйсон Стетхэм', 'https://sun3-18.userapi.com/s/v1/ig2/c1s8ZafxQPEJsd6uyr0QuYR6_TLQpPCrsBdeicu5x3LYdZIqksIhRreQgNAf4I-amnmjJoYAqPp9etktmCWtnt_e.jpg?quality=95&crop=183,333,539,539&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480&ava=1&u=XWmUAZz1VsxsLv2s7Im_9d5balCKa4SGTRm1jiUtT4M&cs=100x100']
+]
+
+let selectedEnemies = [-1];
+
+async function findEnemy(/*enemyAva: HTMLImageElement*/): Promise<Player> {
+  let randomNumber;
+  let lenghEnemies = enemies.length;
+  randomNumber = randomInt(lenghEnemies-1);
+  //чтоб не попадался один и тот же соперник
+  //важно очищать при игре заново
+  while(selectedEnemies.includes(randomNumber)){
+    randomNumber = randomInt(lenghEnemies-1);
+  }
+
+  selectedEnemies.push(randomNumber);
+  const img = new Image()
+  img.src = enemies[randomNumber][1];
+  enemyPlayer = {ava: img, name: enemies[randomNumber][0]}
+
+  return awaitValue(1500, enemyPlayer)
 }
-
-
-
 
 type RockPaperScissors = 'rock' | 'paper' | 'scissors'
 function rockPaperScissors(): RockPaperScissors {
@@ -142,7 +143,7 @@ React.memo(
   
   useEffect(()=>{
     if (gameState==='search') {
-      findEnemy(resources.enemyAva.image).then(it=>{
+      findEnemy().then(it=>{
         setEnemy(it)
         setGameState('start')
       })
@@ -229,7 +230,11 @@ React.memo(
     if (gameResult==='battleWin') return ['Победа', '', 'Продолжить']
     if (gameResult==='battleDraw') return ['Ничья', '', 'Продолжить']
     if (gameResult==='battleLost') return ['Проигрыш', '', 'Продолжить']
-    if (gameResult==='gameLost') return ['Вы проиграли', '', 'Начать заново']
+    if (gameResult==='gameLost') {
+      //очищаем список
+      selectedEnemies = []
+      return ['Вы проиграли', '', 'Начать заново']
+    }  
     if (gameResult==='tourWin') return ['Вы победили!', '', 'Следующий тур']
     if (gameResult==='gameWin') return [
       'Вы выиграли!',
@@ -272,8 +277,10 @@ React.memo(
   useLayoutEffect(()=>{
     const sBar = statusBarRef.current!
     const img = function(){
-      if (gameState!=='search')
-        return resources.enemyAva.image/* .cloneNode() as HTMLImageElement */
+      if (gameState!=='search'){
+        console.log("gameState!==search")
+        return enemyPlayer.ava;
+      }        
       const img = new Image()
       img.src = resources.unknownAva.dataUrl
       return img
