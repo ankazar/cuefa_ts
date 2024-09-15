@@ -33,7 +33,7 @@ React.memo(
         // Данные пользователя получены
         window.localStorage['uniqueId'] = data.id
         window.localStorage['playerAva'] = data.photo_100
-        window.localStorage['playerName'] = data.first_name + ' ' + data.last_name
+        window.localStorage['playerName'] = data.first_name// + ' ' + data.last_name
         //console.log(data);
       }    
     })
