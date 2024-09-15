@@ -28,13 +28,14 @@ React.memo(
   
   const tournamentId = useParams().tournamentId!
   
-  const tournamentName = `Турнир ${tournamentId}`
-  const tournamentLevel = '20'
+  //const tournamentName = `Турнир ${tournamentId}`
+  const tournamentName = `Первый открытый Турнир CUEFA CUP ${tournamentId}`
+  const tournamentLevel = '20' //TODO записать в переменную
+
   const tournamentRules = `\
-    <p>1. Правило 1</p>
-    <p>2. Правило 2</p>
-    <p>3. Правило 3</p>
-    <p>4. Правило 4</p>
+    <p>1. Для победы в турнире необходимо обыграть 20 соперников подряд</p>
+    <p>2. Игра продолжается до двух побед одного из участников</p>
+    <p>3. В случае выбывания из турнира, учатсник может участвовать в турнире снова</p>
   `
   
   

@@ -230,7 +230,7 @@ React.memo(
   const { resources } = useRecoilValue(AppRecoil)
   
   const tourData = {
-    tourLevel: 3,
+    tourLevel: 20, //TODO извлекать из глобальной переменной
     playerAva: resources.playerAva.image,
     playerName: window.localStorage['playerName'],
   }
